@@ -1,0 +1,66 @@
+body {
+    background-image: url(./Assets/coding\ quiz\ background.jpg);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#start {
+    display: inline-flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    justify-content: space-between;
+    border-radius: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular';
+    font-size: 125%;
+    background-color: bisque;
+}
+
+
+button:hover {
+    transform: scale(1.1);
+    cursor: grab;
+    transition: .2s;
+}
+
+.sidebyside {
+    display: flex;
+    justify-content: space-evenly;
+    justify-content: space-between;
+    font-size: x-large;
+    color: azure;
+}
+
+.highscores.html {
+    transform: scale(1.1);
+    cursor: grab;
+    transition: .2s;
+}
+
+.wrapper {
+    text-align: center;
+    padding-block: 30px;
+    font-size: larger;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande';
+    color: azure;
+}
+
+#initials {
+    padding-top: 10px;
+    padding-bottom: 3px;
+}
+
+#submit {
+    font-size: x-large;
+    background-color: bisque;
+}
+ 
+#end-screen, #feedback, #questions, #start-screen {
+    display: none;    
+}
+
+#end-screen.active, #feedback.active, #questions.active, #start-screen.active  
+{
+    display: block;
+}
