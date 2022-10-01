@@ -147,9 +147,13 @@ function activateChoices() {
 
     })
 }
+
+// yet to build the timer and finalise the high score ordering...
+
 /*
 // local storage will keep the score for the quiz
 localStorage.setItem('score', '1');
+
 // get item will pull and accumulate the score in localstorage
 var cat = localStorage.getItem('score');
 
