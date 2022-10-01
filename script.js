@@ -3,14 +3,19 @@
 
 // Select elements
 // #choices ul enables the html choices id and ul to be targeted
-var choicesul = document.querySelector("#choices ul")
-var endScreen = document.querySelector("#end-screen")
-var feedback = document.querySelector("#feedback")
-var questions = document.querySelector("#questions")
-var questionTitle = document.querySelector("#question-title")
+var choicesul = document.querySelector("#choices ul");
+var endScreen = document.querySelector("#end-screen");
+var feedback = document.querySelector("#feedback");
+var questions = document.querySelector("#questions");
+var questionTitle = document.querySelector("#question-title");
 var startBtn = document.querySelector("#start");
-var startScreen = document.querySelector("#start-screen")
+var startScreen = document.querySelector("#start-screen");
+var finalScore = document.querySelector('#final-score');
+var initials = document.querySelector('#initials');
+var submitBtn = document.querySelector('#submit');
 
+var qi = -1;
+var score = 0;
 
 startBtn.addEventListener("click", startQuiz);
 
@@ -40,28 +45,62 @@ var quizQs = [
 
 
 
-//var qi = 0
+
 /**
  * start the quiz
  * 
  * args: none
  */
+
 function startQuiz() {
     console.log("start quiz link")
     questions.classList.add("active");
     startScreen.classList.remove("active");
+    qi = -1;
+    nextQ()
+}
 
-//qi = 0    
+/**
+ * show next question
+ */
+function nextQ() {
 
+    // Initializes first quetion;
+    if (qi < 0) {
 
-//function nextQ() {
+        qi = 0;
+    } else {
 
-    for (let qi = 0; qi < quizQs.length; qi++) {
-        console.log("Question " + qi + "=", quizQs[qi].title);
-        questionTitle.innerHTML = quizQs[qi].title;
-        setChoices(qi)
-        activeChoices()
+        qi++;
     }
+
+
+    console.log("show question: " + qi)
+    if (qi >= quizQs.length) {
+        endQuiz()
+        return;
+    }
+
+    //   for (let qi = 0; qi < quizQs.length; qi++) {
+    console.log("Question " + qi + "=", quizQs[qi].title);
+    questionTitle.innerHTML = quizQs[qi].title;
+    setChoices(qi)
+    activateChoices()
+}
+
+function endQuiz() {
+    console.log("Quiz finished. move to high scores");
+    endScreen.classList.add("active");
+    questions.classList.remove("active");
+    finalScore.innerHTML = score;
+    
+    submitBtn.addEventListener('click', sumbitScore);
+}
+
+function sumbitScore(){
+    console.log("recording initials", initials.value, 'score', score);
+    localStorage.setItem("submitScore", score);
+    window.location.href = 'highscores.html';
 }
 
 
@@ -77,14 +116,28 @@ function setChoices(qi) {
     choicesul.innerHTML = list
 }
 
+/**
+ *  button event handler
+ */
 function buttonsQ(evt) {
     console.log("adding functionality to buttons", evt)
-    console.log('button value =',evt.srcElement.value)
+    console.log('button value =', evt.srcElement.value)
+    console.log("correct answer = ", quizQs[qi].answer)
+    if (quizQs[qi].answer == evt.srcElement.value) {
+        score = score + 10
+        console.log("true", score)
 
+    }
+
+    nextQ()
 }
 
-
-function activeChoices() {
+/**
+ * Initialize choices buttons
+ * 
+ * connecting buttons to js function 
+ */
+function activateChoices() {
     var buttons = choicesul.querySelectorAll("button");
     console.log("button", buttons);
     buttons.forEach((button) => {
@@ -93,6 +146,7 @@ function activeChoices() {
 
     })
 }
+/*
 // local storage will keep the score for the quiz
 localStorage.setItem('score', '1');
 // get item will pull and accumulate the score in localstorage
@@ -103,7 +157,7 @@ var cat = localStorage.getItem('score');
 var timeHandler = setInterval(timer()) {
 
 }, 1000)
-
+*/
 // var list1 = "";
 // for (i = 0; i < fruits.length; i++) {
 //     console.log("individual fruits: " + fruits[i])
