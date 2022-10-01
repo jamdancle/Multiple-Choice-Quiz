@@ -51,7 +51,7 @@ var quizQs = [
  * 
  * args: none
  */
-
+// commanding screen changes and starting quiz
 function startQuiz() {
     console.log("start quiz link")
     questions.classList.add("active");
@@ -61,11 +61,11 @@ function startQuiz() {
 }
 
 /**
- * show next question
+ * show next question in quiz
  */
 function nextQ() {
 
-    // Initializes first quetion;
+    // Initializes first quetion 
     if (qi < 0) {
 
         qi = 0;
@@ -88,6 +88,7 @@ function nextQ() {
     activateChoices()
 }
 
+// intitiates end of quiz page 
 function endQuiz() {
     console.log("Quiz finished. move to high scores");
     endScreen.classList.add("active");
@@ -96,14 +97,14 @@ function endQuiz() {
     
     submitBtn.addEventListener('click', sumbitScore);
 }
-
+// inputs content to move to highscores hmtl page
 function sumbitScore(){
     console.log("recording initials", initials.value, 'score', score);
     localStorage.setItem("submitScore", score);
     window.location.href = 'highscores.html';
 }
 
-
+// brings together active buttons and answers
 function setChoices(qi) {
 
     choicesul.innerHTML = "";
@@ -117,7 +118,7 @@ function setChoices(qi) {
 }
 
 /**
- *  button event handler
+ *  button event handler - givine function to buttons, adding scores and true answers
  */
 function buttonsQ(evt) {
     console.log("adding functionality to buttons", evt)
@@ -128,7 +129,7 @@ function buttonsQ(evt) {
         console.log("true", score)
 
     }
-
+//moves to next quesiton
     nextQ()
 }
 
@@ -157,86 +158,4 @@ var cat = localStorage.getItem('score');
 var timeHandler = setInterval(timer()) {
 
 }, 1000)
-*/
-// var list1 = "";
-// for (i = 0; i < fruits.length; i++) {
-//     console.log("individual fruits: " + fruits[i])
-//     list = list + "<li>" + fruits[i] + "</li>"
-// }
-
-
-
-// var test = [1,2,3,4];
-
-// test = [];
-// var dataToAdd = [5,9,2,6]
-// for(var i =0; i < 4; i++) {
-
-//     test.push(dataToAdd[i]);
-// }
-
-// test == [5,9,2,6];
-
-
-
-
-/*
-
-
-// if (i == quizQs.length, ) {
-
-//     console.log(quizQs[i]);
-// }
-
-
-
-
-*/
-
-
-
-
-
-/** 
- * show question and answers - multiple choice
- 
-function promptQuestion() {
-
-}
-
-
-for (var i=0; i < questions.length; i++) 
-
-
-    var response = window.prompt(questions[i].prompt):
-    if(response == questions[i].answer) {
-        score++;
-        alert("Correct!");
-    }else {
-            ("Wrong!")
-        }
-    }
-    alert("You got " + score + "/" + questions.length)
-
-
-prompt
-
-var AllDone
-
-var score
-
-alert("All Done!")
-
-alert("Your final score is", + score)
-
-id final-score (for score record)
-
-var highscores
-
-id time (for timer)
-
-button get
-    
-<button id="start">Start Quiz</button>
-
 */
